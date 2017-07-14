@@ -1,15 +1,10 @@
 <md-toolbar color="primary"><span>{{title}}</span></md-toolbar>
-<div>
-  <md-card>
-    <md-card-title>Timer</md-card-title>
-    <md-card-content>
-      <md-grid-list cols="1" rowHeight="2:1">
-        <md-grid-tile>{{time}}</md-grid-tile>
-      </md-grid-list>
-      <md-grid-list cols="2" rowHeight="2:1">
-        <md-grid-tile><button md-button (click)="start()">Start</button></md-grid-tile>
-        <md-grid-tile><button md-button (click)="stop()">Stop</button></md-grid-tile>
-      </md-grid-list>
-    </md-card-content>
-  </md-card>
-</div>
+<md-grid-list cols="3">
+    <md-grid-tile></md-grid-tile>
+    <md-grid-tile colspan="1">
+        <app-timer></app-timer>
+    </md-grid-tile>
+    <md-grid-tile></md-grid-tile>
+</md-grid-list>
+
+
