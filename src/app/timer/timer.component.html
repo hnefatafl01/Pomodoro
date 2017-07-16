@@ -1,15 +1,16 @@
 <md-card id="timer">
-    <md-card-title>Timer</md-card-title>
     <md-card-content>
-       <md-grid-list cols="1" rowHeight="2:1">
-        <md-grid-tile>{{time}}</md-grid-tile>
-        <md-grid-tile>
-          <md-progress-spinner mode="determinate" [value]="10"></md-progress-spinner>
-        </md-grid-tile>
+       <md-grid-list cols="1" rowHeight="3:1">
+          <md-grid-tile colspan="1" rowspan="1">{{getTime()}}</md-grid-tile>
+          <md-grid-tile colspan="1" rowspan="1">
+            <app-progress></app-progress>
+          </md-grid-tile>
+          <md-grid-tile colspan="1" rowspan="1">
+            <md-card-actions>
+              <button md-button (click)="start()">Start</button>
+              <button md-button (click)="stop()">Stop</button>
+            </md-card-actions>
+          </md-grid-tile>
       </md-grid-list> 
-      <md-card-actions>
-        <button md-button (click)="start()">Start</button>
-        <button md-button (click)="stop()">Stop</button>
-      </md-card-actions>
     </md-card-content>
 </md-card>

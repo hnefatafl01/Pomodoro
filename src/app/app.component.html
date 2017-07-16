@@ -1,7 +1,10 @@
-<md-toolbar color="primary"><span>{{title}}</span></md-toolbar>
-<md-grid-list cols="3">
+
+<md-grid-list cols="3" rowHeight="4:3">
+    <md-grid-tile-header>
+        <md-toolbar color="primary"><span>{{title}}</span></md-toolbar>   
+    </md-grid-tile-header>
     <md-grid-tile></md-grid-tile>
-    <md-grid-tile colspan="1">
+    <md-grid-tile colspan="1" rowspan="2">
         <app-timer></app-timer>
     </md-grid-tile>
     <md-grid-tile></md-grid-tile>

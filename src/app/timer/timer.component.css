@@ -1,6 +1,4 @@
 #timer {
-    max-width: 60vh;
-    max-height: 80vh;
-    width: 30vw;
-    height: 40vh;
+    width: 20em;
+    height: 100%;
 }
