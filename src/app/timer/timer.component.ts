@@ -7,8 +7,6 @@ import { AppService } from '../app.service';
   styleUrls: ['./timer.component.css']
 })
 export class TimerComponent implements OnInit {
-  private setTimeoutHandler: any;
-  private setIntervalHandler: any;
   formattedTime: any;
   time = .25;
   timerStatus = 0;
@@ -19,34 +17,46 @@ export class TimerComponent implements OnInit {
 
   ngOnInit() {
   }
+  timer(minutesDuration, status) {
+        if (status === 1) {
+            let count = minutesDuration * 60;
+            const start = new Date().getTime();
+            const interval = setInterval(function() {
+                const end = new Date().getTime();
+                const elapsed = end - start;
+                let seconds = Math.round((elapsed / 1000) % 60).toString();
+                let minutes = Math.round((elapsed / (1000 * 60)) % 60).toString();
+                if (seconds.length < 2) {
+                seconds = '0' + seconds.toString();
+                }
+                if (minutes.length < 2) {
+                minutes = '0' + minutes;
+                }
+                const time: string = minutes + ':' + seconds;
+                count--;
+                console.log(time)
+                if (count === 0 || status === 0) {
 
-  // timer(ticker: any) {
-  //   this.setTimeoutHandler = setTimeout(() => { }, 20000);
-  // }
+                    clearInterval(interval);
+                    console.log('Times up');
+                    return time;
+                }
+            }, 1000);
+        }
+    }
 
-  // tick() {
-  //   this.setIntervalHandler = setInterval(() => {
-  //     this.time += 1;
-  //     console.log(this.time);
-  //   }, 1000);
-  // }
 
   getTime() {
-    // this.formattedTime = this.timerService.formatter(this.time);
-    // return this.formattedTime;
-    this.formattedTime = this.timerService.timer(this.time, this.timerStatus);
+    this.formattedTime = this.timer(this.time, this.timerStatus);
     return this.formattedTime;
   }
 
   start() {
-    // this.timer(this.tick());
     this.timerStatus = 1;
     console.log('start this shiz');
   }
 
   stop() {
-    // clearTimeout(this.setTimeoutHandler);
-    // clearInterval(this.setIntervalHandler);
     this.timerStatus = 0;
     console.log('stop this shiz');
   }
