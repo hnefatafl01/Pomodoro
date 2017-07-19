@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { AppService } from '../app.service';
 
 @Component({
@@ -6,18 +6,24 @@ import { AppService } from '../app.service';
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css']
 })
+
 export class TimerComponent implements OnInit {
-  formattedTime: any;
-  time = .25;
+  time = '00:00';
   timerStatus = 0;
   title = 'Super Pom';
 
-  constructor(private timerService: AppService) {
+  constructor(private _ngZone: NgZone) {}
+
+  ngOnInit() {}
+
+  processOutsideOfAngularZone() {
+    this.time = '00:00';
+    this._ngZone.runOutsideAngular(() => {
+        this.timer(.125, this.timerStatus);
+    });
   }
 
-  ngOnInit() {
-  }
-  timer(minutesDuration, status) {
+  timer(minutesDuration: number, status: number) {
         if (status === 1) {
             let count = minutesDuration * 60;
             const start = new Date().getTime();
@@ -32,27 +38,21 @@ export class TimerComponent implements OnInit {
                 if (minutes.length < 2) {
                 minutes = '0' + minutes;
                 }
-                const time: string = minutes + ':' + seconds;
+                // const time: string = minutes + ':' + seconds;
+                this.time = minutes + ':' + seconds;
                 count--;
-                console.log(time)
-                if (count === 0 || status === 0) {
-
+                console.log(this.time);
+                if (this.time === '00:15' || status !== 1) {
                     clearInterval(interval);
-                    console.log('Times up');
-                    return time;
+                    console.log('thisTimes up');
                 }
             }, 1000);
         }
     }
 
-
-  getTime() {
-    this.formattedTime = this.timer(this.time, this.timerStatus);
-    return this.formattedTime;
-  }
-
   start() {
     this.timerStatus = 1;
+    this.processOutsideOfAngularZone()
     console.log('start this shiz');
   }
 
@@ -60,9 +60,7 @@ export class TimerComponent implements OnInit {
     this.timerStatus = 0;
     console.log('stop this shiz');
   }
-  getStatus() {
-    return this.timerStatus;
-  }
+  // getStatus() {
+  //   return this.timerStatus;
+  // }
 }
-
-

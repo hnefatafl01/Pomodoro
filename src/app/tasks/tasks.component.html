@@ -1,0 +1,19 @@
+<md-card class="task-card">
+  <md-card-title>Todos</md-card-title>
+  <md-input-container>
+    <input mdInput 
+          [(ngModel)]="todo"
+          name="todo"
+          type="text" 
+          placeholder="Add Task"/>
+    
+  </md-input-container>
+  <button md-button (click)="addTask()">Add Todo</button>
+  <md-card-content>
+    <md-list>
+      <md-list-item *ngFor="let todo of tasks">
+        <h4>{{todo}}</h4>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>
