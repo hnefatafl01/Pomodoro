@@ -16,11 +16,12 @@ export class TasksComponent implements OnInit {
 
   addTask() {
     this.tasks.unshift(this.todo);
+    delete this.todo;
   }
 
-  removeTask(index) {
-    for (let i; i < this.tasks.length; i++) {
-      if (this.tasks[i] === index) {
+  removeTask(todo) {
+    for (let i = 0; i < this.tasks.length; i++) {
+      if (this.tasks[i] === todo) {
         this.tasks.splice(i, 1);
       }
     }

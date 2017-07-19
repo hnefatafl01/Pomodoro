@@ -3,3 +3,7 @@
     height: 50vh;
     margin-right: -16px; 
 }
+
+.mat-input-container {
+    width: 250px;
+}
