@@ -11,7 +11,7 @@ export class TasksComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.tasks = ['hi', 'do things', 'eat food'];
+    this.tasks = ['get swole', 'do things', 'eat food'];
   }
 
   addTask() {
