@@ -11,7 +11,7 @@
     </md-input-container>
     <button md-fab
           class="flex-item" 
-          (click)="addTask()">
+          (click)="addTask(todo.value)">
             <md-icon>add</md-icon>
     </button>
   </div>
@@ -23,7 +23,7 @@
         fxLayout="row"
         *ngFor="let todo of tasks; let i = index;">
           <div class="flex-item" fxFlex="80">
-            <h4>{{todo}}</h4>
+            <h4>{{todo.title}}</h4>
           </div>
           <div class="flex-item" fxFlex="20">
             <button md-button-flat (click)="removeTask(todo)">

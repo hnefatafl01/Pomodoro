@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-tasks',
@@ -6,15 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-  tasks: string[];
-  todo: string;
-  constructor() { }
+  todo: Todo;
+  tasks: Todo[];
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.tasks = ['get swole', 'do things', 'eat food'];
+    this.dataService.getTasks().subscribe((todos) => {
+      this.tasks = todos.slice(0, 5);
+    });
   }
 
-  addTask() {
+  addTask(todo) {
+    console.log(todo)
     this.tasks.unshift(this.todo);
     delete this.todo;
   }
@@ -26,4 +31,11 @@ export class TasksComponent implements OnInit {
       }
     }
   }
+}
+
+interface Todo {
+  userId: number,
+  id: number,
+  completed: boolean,
+  title: string
 }
