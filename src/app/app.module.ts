@@ -16,7 +16,6 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { AppService } from './app.service';
 import { DataService } from './services/data.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HeaderComponent } from './components/header/header.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -30,8 +29,7 @@ const appRoutes: Routes = [
     TimerComponent,
     ProgressComponent,
     TasksComponent,
-    DashboardComponent,
-    HeaderComponent
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@ export class AppComponent {
   activeLinkIndex = 0;
   constructor(private router: Router) {
     this.routeLinks = [
-      {label: 'Home', link: 'dashboard'},
+      {label: 'Home', link: ''},
       {label: 'Tasks', link: 'tasks'}
     ];
   }
