@@ -14,7 +14,6 @@ import { ProgressComponent } from './components/progress/progress.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TaskComponent } from './components/task/task.component';
-import { TaskFormComponent } from './components/task-form/task-form.component';
 
 import { AppService } from './app.service';
 import { DataService } from './services/data.service';
@@ -32,8 +31,7 @@ const appRoutes: Routes = [
     ProgressComponent,
     TaskListComponent,
     DashboardComponent,
-    TaskComponent,
-    TaskFormComponent
+    TaskComponent
   ],
   imports: [
     BrowserModule,
