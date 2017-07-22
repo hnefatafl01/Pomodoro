@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+const API_URL = 'http://localhost:3000';
+
 @Injectable()
 export class DataService {
 
@@ -10,7 +12,12 @@ export class DataService {
   }
 
   getTasks() {
-    return this.http.get('https://jsonplaceholder.typicode.com/todos')
-      .map(res => res.json());
+    return this.http.get(`${API_URL}/tasks`)
+      .map((res) => {
+        const body = res.text();
+        if (body) {
+          return JSON.parse(body);
+        }
+      });
   }
 }

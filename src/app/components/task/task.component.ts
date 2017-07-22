@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent {
+  id: number;
   title: string;
   completed: boolean;
   // constructor(title: string, completed: boolean) {
