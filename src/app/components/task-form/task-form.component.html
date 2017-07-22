@@ -1,0 +1,13 @@
+ <form (ngSubmit)="onSubmit(); taskForm.reset();" #taskForm="ngForm"> 
+    <md-input-container>
+      <input mdInput
+            class="flex-item"
+            [(ngModel)]="task"
+            name="task"
+            type="text" 
+            placeholder="Add things to do..."/>
+    </md-input-container>
+    <button md-fab class="flex-item" type="submit">
+      <md-icon>add</md-icon>
+    </button>
+</form> 

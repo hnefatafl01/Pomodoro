@@ -11,16 +11,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { TimerComponent } from './components/timer/timer.component';
 import { ProgressComponent } from './components/progress/progress.component';
-import { TasksComponent } from './components/tasks/tasks.component';
+import { TaskListComponent } from './components/task-list/task-list.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TaskComponent } from './components/task/task.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
 
 import { AppService } from './app.service';
 import { DataService } from './services/data.service';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'timer', component: TimerComponent },
-  { path: 'tasks', component: TasksComponent }
+  { path: 'tasks', component: TaskListComponent }
 ];
 
 @NgModule({
@@ -28,8 +30,10 @@ const appRoutes: Routes = [
     AppComponent,
     TimerComponent,
     ProgressComponent,
-    TasksComponent,
-    DashboardComponent
+    TaskListComponent,
+    DashboardComponent,
+    TaskComponent,
+    TaskFormComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,7 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     HttpModule,
     MdTabsModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [AppService, DataService],

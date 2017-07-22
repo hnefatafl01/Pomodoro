@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent {
-  routeLinks: any[];
+  routerLinks: any[];
   activeLinkIndex = 0;
   constructor(private router: Router) {
-    this.routeLinks = [
-      {label: 'Home', link: ''},
-      {label: 'Tasks', link: 'tasks'}
+    this.routerLinks = [
+      { label: 'Home', link: '' },
+      { label: 'Tasks', link: 'tasks' }
     ];
   }
 }

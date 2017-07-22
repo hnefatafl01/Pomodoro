@@ -1,0 +1,27 @@
+ <!-- <md-card class="task-card">  -->
+<section class="task-list">
+  <md-card-title>Show Me The Things</md-card-title>
+  <div class="flex-container" fxLayout="space-between center">
+    <!-- <input [(ngModel)]="task.title"/> -->
+     <!-- <app-task-form></app-task-form>  -->
+  </div>
+  <md-card-content>
+    <md-list>
+      <md-list-item
+        class="flex-container"
+        fxLayoutAlign="start center"
+        fxLayout="row"
+        *ngFor="let task of tasks; let i = index;">
+          <div class="flex-item" fxFlex="80">
+             <h4 [style.color] = "isCompleted ? 'green' : 'red'">{{task.title}}</h4> <!-- fix ternary -->
+          </div>
+          <div class="flex-item" fxFlex="20">
+            <button md-button-flat (click)="removeTask(todo)">
+              <md-icon>delete</md-icon>
+            </button>
+          </div>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</section>
+ <!-- </md-card>  -->
