@@ -2,8 +2,17 @@
 <section class="task-list">
   <md-card-title>Show Me The Things</md-card-title>
   <div class="flex-container" fxLayout="space-between center">
-    <!-- <input [(ngModel)]="task.title"/> -->
-     <!-- <app-task-form></app-task-form>  -->
+    <md-input-container>
+    <input mdInput
+          class="flex-item"
+          #taskTitle
+          (keyup.enter)="onSubmit(taskTitle.value)"
+          type="text" 
+          placeholder="Add things to do..."/>
+    </md-input-container>
+    <button md-fab class="flex-item" (click)=onSubmit(taskTitle.value)>
+      <md-icon>add</md-icon>
+    </button>
   </div>
   <md-card-content>
     <md-list>
@@ -13,7 +22,7 @@
         fxLayout="row"
         *ngFor="let task of tasks; let i = index;">
           <div class="flex-item" fxFlex="80">
-             <h4 [style.color] = "isCompleted ? 'green' : 'red'">{{task.title}}</h4> <!-- fix ternary -->
+             <h4 [style.color] = "isCompleted ? '#673AB7' : '#FFD740'">{{task.title}}</h4> <!-- fix ternary -->
           </div>
           <div class="flex-item" fxFlex="20">
             <button md-button-flat (click)="removeTask(todo)">

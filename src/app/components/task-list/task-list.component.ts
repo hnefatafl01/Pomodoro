@@ -37,11 +37,10 @@ export class TaskListComponent implements OnInit {
     console.log('init', this.tasks);
   }
 
-  onSubmit(taskForm: NgForm) {
-    console.log('form value', taskForm);
-    this.isCompleted = this.task.completed;
-    // this.tasks.unshift(this.todo);
-    // delete this.todo;
+  onSubmit(taskTitle: string) {
+    this.isCompleted = false;
+    this.task.title = taskTitle;
+    this.tasks.unshift(this.task);
   }
 
   removeTask(todo) {
