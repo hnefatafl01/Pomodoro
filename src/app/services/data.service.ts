@@ -20,4 +20,12 @@ export class DataService {
         }
       });
   }
+
+  deleteTask(id) {
+    console.log('delete me', id)
+    return this.http.delete(`${API_URL}/tasks/${id}`).subscribe((response) => {
+      console.log(response);
+    })
+      // .map(res => console.log(res))
+  }
 }

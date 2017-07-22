@@ -46,10 +46,12 @@ export class TaskListComponent implements OnInit {
   }
 
   removeTask(task) {
-    for (let i = 0; i < this.tasks.length; i++) {
-      if (this.tasks[i] === task) {
-        this.tasks.splice(i, 1);
-      }
-    }
+    const id = task.id;
+    this.dataService.deleteTask(id)
+    // for (let i = 0; i < this.tasks.length; i++) {
+    //   if (this.tasks[i] === task) {
+    //     this.tasks.splice(i, 1);
+    //   }
+    // }
   }
 }
