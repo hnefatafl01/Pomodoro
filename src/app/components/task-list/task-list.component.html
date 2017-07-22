@@ -10,7 +10,7 @@
           type="text" 
           placeholder="Add things to do..."/>
     </md-input-container>
-    <button md-fab class="flex-item" (click)=onSubmit(taskTitle.value)>
+    <button md-fab class="flex-item" (click)="onSubmit(taskTitle.value); taskTitle.value='';">
       <md-icon>add</md-icon>
     </button>
   </div>
@@ -25,7 +25,7 @@
              <h4 [style.color] = "isCompleted ? '#673AB7' : '#FFD740'">{{task.title}}</h4> <!-- fix ternary -->
           </div>
           <div class="flex-item" fxFlex="20">
-            <button md-button-flat (click)="removeTask(todo)">
+            <button md-button-flat (click)="removeTask(task)">
               <md-icon>delete</md-icon>
             </button>
           </div>

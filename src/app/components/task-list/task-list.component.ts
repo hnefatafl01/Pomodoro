@@ -43,9 +43,9 @@ export class TaskListComponent implements OnInit {
     this.tasks.unshift(this.task);
   }
 
-  removeTask(todo) {
+  removeTask(task) {
     for (let i = 0; i < this.tasks.length; i++) {
-      if (this.tasks[i] === todo) {
+      if (this.tasks[i] === task) {
         this.tasks.splice(i, 1);
       }
     }
