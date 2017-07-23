@@ -21,21 +21,21 @@ export class TaskListComponent implements OnInit {
   tasks: any;
   isCompleted: boolean;
   // @Input() public task: TaskComponent;
-  task: TaskComponent = {
-    id: 5,
-    title: 'eat',
-    completed: false
-  }
+  task: TaskComponent;
 
   constructor(private dataService: DataService) {
     // this.tasks = dataService;
   }
 
   ngOnInit() {
+    this.task = new TaskComponent();
+    this.task.id = undefined;
+    this.task.completed = false;
     this.dataService.getTasks().subscribe((response) => {
+      console.log(response)
       this.tasks = response;
     });
-    this.isCompleted = this.task.completed;
+    // this.isCompleted = this.task.completed;
     console.log('init', this.tasks);
   }
 
@@ -43,11 +43,12 @@ export class TaskListComponent implements OnInit {
     this.isCompleted = false;
     this.task.title = taskTitle;
     // this.tasks.unshift(this.task);
-    this.dataService
-      .createTask(this.task)
-      .subscribe((response) => {
-        console.log(response);
-      })
+    console.log(this.task)
+    // this.dataService
+    //   .createTask(this.task)
+      // .subscribe((response) => {
+      //   console.log(response);
+      // })
   }
 
   removeTask(task) {

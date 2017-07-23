@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/observable/throw';
 
@@ -15,15 +17,11 @@ export class DataService {
   }
 
   createTask(task) {
-    return this.http.post(`${API_URL}/tasks`, task)
-      .map(res => {
-        // const body = res.text();
-        // if (body) {
-        //   return JSON.parse(body);
-        // }
-        console.log(res)
-      })
-      // .subscribe(response => { console.log(response)});
+    console.log('task', task)
+    // return this.http.post(`${API_URL}/tasks`, task)
+    //   .map((res) => {
+    //     console.log('data service', res)
+    //   })
   }
 
   getTasks() {
