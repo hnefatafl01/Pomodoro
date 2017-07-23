@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { MdButtonModule, MdToolbarModule, MdCardModule, MdGridListModule } from '@angular/material';
 import { MdProgressSpinnerModule, MdInputModule, MdIconModule, MdTabsModule } from '@angular/material';
@@ -17,6 +18,7 @@ import { TaskComponent } from './components/task/task.component';
 
 import { AppService } from './app.service';
 import { DataService } from './services/data.service';
+import { HttpInterceptor } from './services/http-interceptor.service';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -48,9 +50,10 @@ const appRoutes: Routes = [
     HttpModule,
     MdTabsModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AppService, DataService],
+  providers: [AppService, DataService, HttpInterceptor],
   bootstrap: [AppComponent]
 })
 
