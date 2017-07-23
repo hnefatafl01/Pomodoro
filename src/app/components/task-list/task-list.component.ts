@@ -44,11 +44,11 @@ export class TaskListComponent implements OnInit {
     this.task.title = taskTitle;
     // this.tasks.unshift(this.task);
     console.log(this.task)
-    // this.dataService
-    //   .createTask(this.task)
-      // .subscribe((response) => {
-      //   console.log(response);
-      // })
+    this.dataService
+      .createTask(this.task)
+      .subscribe((response) => {
+        console.log(response);
+      })
   }
 
   removeTask(task) {

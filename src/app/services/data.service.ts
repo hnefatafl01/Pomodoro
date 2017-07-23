@@ -18,10 +18,10 @@ export class DataService {
 
   createTask(task) {
     console.log('task', task)
-    // return this.http.post(`${API_URL}/tasks`, task)
-    //   .map((res) => {
-    //     console.log('data service', res)
-    //   })
+    return this.http.post(`${API_URL}/tasks`, task)
+      .map((res) => {
+        console.log('data service', res)
+      })
   }
 
   getTasks() {
