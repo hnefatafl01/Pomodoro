@@ -6,15 +6,22 @@ const logger = require('morgan');
 const cors = require('cors');
 require('dotenv').config({silent: true});
 
-app.use(cors({
-  origin: 'http://localhost:4200',
-  optionsSuccessStatus: 200,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  exposedHeaders: ['Content-Range', 'X-Content-Range']
-}));
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+const corsOptions = {
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'X-Access-Token'],
+  credentials: true,
+  methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+  origin: 'http://localhost:4200',
+  preflightContinue: false
+};
+
+app.use(cors(corsOptions));
+app.use('*', cors(corsOptions));
+
+
 
 app.use('/tasks', tasks);
 

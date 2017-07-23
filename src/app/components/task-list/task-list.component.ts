@@ -42,12 +42,22 @@ export class TaskListComponent implements OnInit {
   onSubmit(taskTitle: string) {
     this.isCompleted = false;
     this.task.title = taskTitle;
-    this.tasks.unshift(this.task);
+    // this.tasks.unshift(this.task);
+    this.dataService
+      .createTask(this.task)
+      .subscribe((response) => {
+        console.log(response);
+      })
   }
 
   removeTask(task) {
     const id = task.id;
-    this.dataService.deleteTask(id)
+    this.dataService
+      .deleteTask(id)
+      .subscribe((response) => {
+        console.log(response);
+      })
+      location.reload();
     // for (let i = 0; i < this.tasks.length; i++) {
     //   if (this.tasks[i] === task) {
     //     this.tasks.splice(i, 1);

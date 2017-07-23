@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('task', (table) => {
+  return knex.schema.createTableIfNotExists('task', (table) => {
     table.increments();
     table.string('title');
     table.boolean('completed');
