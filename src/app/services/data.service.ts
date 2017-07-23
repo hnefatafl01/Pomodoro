@@ -15,15 +15,14 @@ export class DataService {
   }
 
   createTask(task) {
-    return this.http.post(`${API_URL}/tasks`, task, {
-        // headers: new HttpHeaders().set('methods', 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE')
+    return this.http.post(`${API_URL}/tasks`, task)
+      .map(res => {
+        // const body = res.text();
+        // if (body) {
+        //   return JSON.parse(body);
+        // }
+        console.log(res)
       })
-      // .map(res => {
-      //   const body = res.text();
-      //   if (body) {
-      //     return JSON.parse(body);
-      //   }
-      // })
       // .subscribe(response => { console.log(response)});
   }
 

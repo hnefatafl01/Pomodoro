@@ -18,7 +18,8 @@ import { TaskComponent } from './components/task/task.component';
 
 import { AppService } from './app.service';
 import { DataService } from './services/data.service';
-import { HttpInterceptor } from './services/http-interceptor.service';
+import { HttpInterceptorService } from './services/http-interceptor.service';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -53,7 +54,11 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AppService, DataService, HttpInterceptor],
+  providers: [AppService, DataService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorService,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 
