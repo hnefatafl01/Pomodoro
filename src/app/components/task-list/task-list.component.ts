@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { NgForm } from '@angular/forms';
 import { TaskComponent } from '../task/task.component';
+import { ChangeDetectorRef } from '@angular/core';
 
 // const TASKS: TaskComponent[] = [
 //       { title: 'eat', completed: false },
@@ -20,20 +21,19 @@ import { TaskComponent } from '../task/task.component';
 export class TaskListComponent implements OnInit {
   tasks: any;
   isCompleted: boolean;
-  // @Input() public task: TaskComponent;
   task: TaskComponent;
 
-  constructor(private dataService: DataService) {
-    // this.tasks = dataService;
-  }
+  constructor(private dataService: DataService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.task = new TaskComponent();
     this.task.id = undefined;
     this.task.completed = false;
-    this.dataService.getTasks().subscribe((response) => {
-      console.log(response)
-      this.tasks = response;
+    this.dataService
+      .getTasks()
+      .subscribe((data) => {
+        console.log('task list component', data)
+        this.tasks = data;
     });
     // this.isCompleted = this.task.completed;
     console.log('init', this.tasks);
@@ -42,13 +42,12 @@ export class TaskListComponent implements OnInit {
   onSubmit(taskTitle: string) {
     this.isCompleted = false;
     this.task.title = taskTitle;
-    // this.tasks.unshift(this.task);
-    console.log(this.task)
     this.dataService
       .createTask(this.task)
       .subscribe((response) => {
-        console.log(response);
+        console.log('onSubmit', response);
       })
+      this.cd.markForCheck();
   }
 
   removeTask(task) {

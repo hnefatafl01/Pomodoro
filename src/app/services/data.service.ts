@@ -17,23 +17,11 @@ export class DataService {
   }
 
   createTask(task) {
-    console.log('task', task)
     return this.http.post(`${API_URL}/tasks`, task)
-      .map((res) => {
-        console.log('data service', res)
-      })
   }
 
   getTasks() {
     return this.http.get(`${API_URL}/tasks`)
-      .map((res) => {
-        console.log(res)
-        // const body = res.text();
-        // if (body) {
-        //   return JSON.parse(body);
-        // }
-      })
-      // .subscribe(response => { console.log(response)});
   }
 
   deleteTask(id) {
@@ -45,5 +33,8 @@ export class DataService {
 
   // private extractData(result) {
   //   return res.text(result) || {};
+  // }
+  // interface {
+
   // }
 }
