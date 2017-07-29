@@ -1,16 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { NgForm } from '@angular/forms';
 import { TaskComponent } from '../task/task.component';
-import { ChangeDetectorRef } from '@angular/core';
-
-// const TASKS: TaskComponent[] = [
-//       { title: 'eat', completed: false },
-//       { title: 'have fun', completed: true },
-//       { title: 'complete form', completed: false },
-//       { title: 'bind timer data', completed: false },
-//       { title: 'display timer data', completed: false }
-// ];
+import {  } from '@angular/core';
 
 @Component({
   selector: 'app-tasks',
@@ -18,36 +10,44 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./task-list.component.css']
 })
 
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, OnChanges {
   tasks: any;
   isCompleted: boolean;
   task: TaskComponent;
+  title: string;
 
-  constructor(private dataService: DataService, private cd: ChangeDetectorRef) { }
+  constructor(private dataService: DataService) {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('changes', changes);
+  }
 
   ngOnInit() {
     this.task = new TaskComponent();
     this.task.id = undefined;
     this.task.completed = false;
+    this.isCompleted = false;
     this.dataService
       .getTasks()
       .subscribe((data) => {
         console.log('task list component', data)
         this.tasks = data;
     });
+
     // this.isCompleted = this.task.completed;
     console.log('init', this.tasks);
   }
 
-  onSubmit(taskTitle: string) {
-    this.isCompleted = false;
-    this.task.title = taskTitle;
+  onSubmit(event) {
+    event.preventDefault();
+    this.task.title = this.title;
+    console.log(this.task)
     this.dataService
       .createTask(this.task)
       .subscribe((response) => {
         console.log('onSubmit', response);
-      })
-      this.cd.markForCheck();
+      });
   }
 
   removeTask(task) {
@@ -55,9 +55,8 @@ export class TaskListComponent implements OnInit {
     this.dataService
       .deleteTask(id)
       .subscribe((response) => {
-        console.log(response);
+         console.log(response);
       })
-      location.reload();
     // for (let i = 0; i < this.tasks.length; i++) {
     //   if (this.tasks[i] === task) {
     //     this.tasks.splice(i, 1);

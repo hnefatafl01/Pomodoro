@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
@@ -8,58 +8,50 @@ import { Component, OnInit, NgZone } from '@angular/core';
 
 export class TimerComponent implements OnInit {
   time = '00:00';
-  timerStatus = 0;
-  title = 'Super Pom';
+  // timerStatus = 0;
+  timer;
+  @Output() timeEmitter = new EventEmitter<string>();
 
-  constructor(private _ngZone: NgZone) {}
-
-  ngOnInit() {}
-
-  processOutsideOfAngularZone() {
-    this.time = '00:00';
-    this._ngZone.runOutsideAngular(() => {
-        this.timer(.125, this.timerStatus);
-    });
+  constructor() {
+    // console.log(this.timeEmitter);
   }
 
-  timer(minutesDuration: number, status: number) {
-        if (status === 1) {
-            let count = minutesDuration * 60;
-            const start = new Date().getTime();
-            const interval = setInterval(function() {
-                const end = new Date().getTime();
-                const elapsed = end - start;
-                let seconds = Math.round((elapsed / 1000) % 60).toString();
-                let minutes = Math.round((elapsed / (1000 * 60)) % 60).toString();
-                if (seconds.length < 2) {
-                seconds = '0' + seconds.toString();
-                }
-                if (minutes.length < 2) {
-                minutes = '0' + minutes;
-                }
-                // const time: string = minutes + ':' + seconds;
-                this.time = minutes + ':' + seconds;
-                count--;
-                console.log(this.time);
-                if (this.time === '00:15' || status !== 1) {
-                    clearInterval(interval);
-                    console.log('thisTimes up');
-                }
-            }, 1000);
-        }
-    }
+  ngOnInit() {
+  }
 
-  start() {
-    this.timerStatus = 1;
-    this.processOutsideOfAngularZone()
-    console.log('start this shiz');
+  // onTimeChange(event) {
+  //   this.time = event;
+  // }
+
+  start(minutesDuration: number) {
+    let count = minutesDuration * 60;
+    const start = new Date().getTime();
+    this.timer = setInterval(() => {
+        const end = new Date().getTime();
+        const elapsed = end - start;
+        let seconds = Math.round((elapsed / 1000) % 60).toString();
+        let minutes = Math.round((elapsed / (1000 * 60)) % 60).toString();
+        if (seconds.length < 2) {
+        seconds = '0' + seconds.toString();
+        }
+        if (minutes.length < 2) {
+        minutes = '0' + minutes;
+        }
+        this.time = minutes + ':' + seconds;
+        count--;
+        console.log(this.time);
+        this.timeEmitter.emit(this.time);
+
+        // if (this.time === '00:15') {
+        //     clearInterval(this.timer);
+        //     console.log('thisTimes up');
+        // }
+    }, 1000);
   }
 
   stop() {
-    this.timerStatus = 0;
+    clearInterval(this.timer);
     console.log('stop this shiz');
   }
-  // getStatus() {
-  //   return this.timerStatus;
-  // }
 }
+

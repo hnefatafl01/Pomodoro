@@ -11,7 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { TimerComponent } from './components/timer/timer.component';
-import { ProgressComponent } from './components/progress/progress.component';
+import { ProgressComponent } from './components/timer/progress/progress.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TaskComponent } from './components/task/task.component';

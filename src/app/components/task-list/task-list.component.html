@@ -2,17 +2,19 @@
 <section class="task-list">
   <md-card-title>Show Me The Things</md-card-title>
   <div class="flex-container" fxLayout="space-between center">
-    <md-input-container>
-    <input mdInput
-          class="flex-item"
-          #taskTitle
-          (keyup.enter)="onSubmit(taskTitle.value)"
-          type="text" 
-          placeholder="Add things to do..."/>
-    </md-input-container>
-    <button md-fab class="flex-item" (click)="onSubmit(taskTitle.value); taskTitle.value='';">
-      <md-icon>add</md-icon>
-    </button>
+    <form (submit)="onSubmit($event);">
+      <md-input-container>
+      <input mdInput
+            class="flex-item"
+            name="title"
+            [(ngModel)]="title"
+            type="text" 
+            placeholder="Add things to do..."/>
+      </md-input-container>
+      <button md-fab class="flex-item" >
+        <md-icon>add</md-icon>
+      </button>
+    </form>
   </div>
   <md-card-content>
     <md-list>
