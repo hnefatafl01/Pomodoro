@@ -8,20 +8,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 export class TimerComponent implements OnInit {
   time = '00:00';
-  // timerStatus = 0;
   timer;
   @Output() timeEmitter = new EventEmitter<string>();
 
-  constructor() {
-    // console.log(this.timeEmitter);
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
-  // onTimeChange(event) {
-  //   this.time = event;
-  // }
+  ngOnInit() {}
 
   start(minutesDuration: number) {
     let count = minutesDuration * 60;
@@ -39,19 +31,17 @@ export class TimerComponent implements OnInit {
         }
         this.time = minutes + ':' + seconds;
         count--;
-        console.log(this.time);
+        console.log(this.time)
         this.timeEmitter.emit(this.time);
-
-        // if (this.time === '00:15') {
-        //     clearInterval(this.timer);
-        //     console.log('thisTimes up');
-        // }
+        if (this.time === '20:00') {
+            clearInterval(this.timer);
+            console.log('thisTimes up');
+        }
     }, 1000);
   }
 
   stop() {
     clearInterval(this.timer);
-    console.log('stop this shiz');
   }
 }
 

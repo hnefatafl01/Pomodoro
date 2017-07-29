@@ -20,7 +20,7 @@ export class TaskListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
+    // console.log('changes', changes);
   }
 
   ngOnInit() {
@@ -31,12 +31,12 @@ export class TaskListComponent implements OnInit, OnChanges {
     this.dataService
       .getTasks()
       .subscribe((data) => {
-        console.log('task list component', data)
+        // console.log('task list component', data)
         this.tasks = data;
     });
 
     // this.isCompleted = this.task.completed;
-    console.log('init', this.tasks);
+    // console.log('init', this.tasks);
   }
 
   onSubmit(event) {
