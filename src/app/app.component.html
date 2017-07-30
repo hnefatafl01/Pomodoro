@@ -1,11 +1,5 @@
-<md-toolbar color="primary"><span>Productivity Manager</span></md-toolbar>   
-<nav md-tab-nav-bar>
-    <a md-tab-link
-      *ngFor="let routerLink of routerLinks; let i = index;"
-      [routerLink]="routerLink.link">
-       {{routerLink.label}} 
-    </a>
-</nav> 
+<app-header [navLinks]="routerLinks"></app-header>
 <router-outlet></router-outlet>
+
 
 

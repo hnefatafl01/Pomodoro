@@ -1,15 +1,18 @@
 <md-card id="timer">
-    <md-card-content>
-       <md-grid-list cols="1" rowHeight="3:1">
-          <md-grid-tile colspan="1" rowspan="3">
+    
+    <md-card-title>{{time}}</md-card-title>
+    <md-card-content fxLayoutAlign="center space-around">
+        <!-- <md-grid-list cols="1" rowHeight="2:1">  -->
+          <!-- <md-grid-tile colspan="1" rowspan="1"> -->
             <app-progress [timeString]="time"></app-progress>
-          </md-grid-tile>
-          <md-grid-tile colspan="1" rowspan="1">
-            <md-card-actions>
-              <button md-button (click)="start(1)">Start</button>
-              <button md-button (click)="stop()">Stop</button>
-            </md-card-actions>
-          </md-grid-tile>
-      </md-grid-list> 
+          <!-- </md-grid-tile> -->
+          <!-- <md-grid-tile colspan="1" rowspan="1"> -->
+            
+          <!-- </md-grid-tile> -->
+       <!-- </md-grid-list>   -->
     </md-card-content>
+    <md-card-actions>
+            <button md-button (click)="start(20)">Start</button>
+            <button md-button (click)="stop()">Stop</button>
+    </md-card-actions>
 </md-card>

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Output  } from '@angular/core';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent {
-  routerLinks: any[];
+  @Output() routerLinks: any[];
   activeLinkIndex = 0;
   constructor(private router: Router) {
     this.routerLinks = [

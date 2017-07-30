@@ -10,6 +10,7 @@ import { MdProgressSpinnerModule, MdInputModule, MdIconModule, MdTabsModule } fr
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
 import { TimerComponent } from './components/timer/timer.component';
 import { ProgressComponent } from './components/timer/progress/progress.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
@@ -20,6 +21,7 @@ import { AppService } from './app.service';
 import { DataService } from './services/data.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     ProgressComponent,
     TaskListComponent,
     DashboardComponent,
-    TaskComponent
+    TaskComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

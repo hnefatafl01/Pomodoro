@@ -21,13 +21,14 @@ export class ProgressComponent implements OnInit {
     // this.progress = this.formatTime(this.timeString, 60);
   }
 
-  formatTime(time, timerLength) {
+  formatTime(time) {
     const min = Number(time.substring(0, 2))
     const sec = Number(time.substring(3, 5))
     const seconds = (min * 60) + sec;
-    const remainingTime = (100 * (seconds / timerLength)).toFixed(1);
-    console.log(remainingTime)
-    return remainingTime;
+    // const remainingTime = ((seconds / timerLength));
+    // console.log(remainingTime)
+    // return remainingTime;
+    return seconds;
   }
 
 

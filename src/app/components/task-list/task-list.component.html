@@ -1,6 +1,6 @@
- <!-- <md-card class="task-card">  -->
-<section class="task-list">
-  <md-card-title>Show Me The Things</md-card-title>
+<md-card class="task-card">  
+<!-- <section class="task-list"> -->
+  <md-card-title>Task Queue</md-card-title>
   <div class="flex-container" fxLayout="space-between center">
     <form (submit)="onSubmit($event);">
       <md-input-container>
@@ -11,7 +11,7 @@
             type="text" 
             placeholder="Add things to do..."/>
       </md-input-container>
-      <button md-fab class="flex-item" >
+      <button md-fab class="flex-item" color="primary">
         <md-icon>add</md-icon>
       </button>
     </form>
@@ -24,15 +24,16 @@
         fxLayout="row"
         *ngFor="let task of tasks; let i = index;">
           <div class="flex-item" fxFlex="80">
-             <h4 [style.color] = "isCompleted ? '#673AB7' : '#FFD740'">{{task.title}}</h4> <!-- fix ternary -->
+             <!-- <h4 [style.color] = "isCompleted ? '#673AB7' : '#7B1FA2'">{{task.title}}</h4>  fix ternary  -->
+             <h4 color="foreground">{{task.title}}</h4>
           </div>
           <div class="flex-item" fxFlex="20">
-            <button md-button-flat (click)="removeTask(task)">
+            <button md-mini-fab color="accent" (click)="removeTask(task)">
               <md-icon>delete</md-icon>
             </button>
           </div>
       </md-list-item>
     </md-list>
   </md-card-content>
-</section>
- <!-- </md-card>  -->
+<!-- </section> -->
+</md-card>  

@@ -1,2 +1,10 @@
-<h4>{{timeString}}</h4>
-<md-progress-spinner mode="determinate" [value]="formatTime(timeString, 60)"></md-progress-spinner>
+<!-- <md-progress-spinner
+    *ngIf="formatTime(timeString) < 60 && formatTime(timeString) > 0" 
+    mode="indeterminate"
+    md-diameter="10">
+</md-progress-spinner> -->
+<md-progress-spinner 
+    mode="determinate" 
+    [value]="100"
+    md-diameter="1">
+</md-progress-spinner>
