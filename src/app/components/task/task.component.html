@@ -1,0 +1,13 @@
+<md-list-item
+    class="flex-container"
+    fxLayoutAlign="start center"
+    fxLayout="row">
+      <div class="flex-item" fxFlex="80">
+           <h4 color="foreground">{{task.title}}</h4>
+      </div>
+      <div class="flex-item" fxFlex="20">
+        <button md-mini-fab color="accent" (click)="removeTask(task)">
+          <md-icon>clear</md-icon>
+        </button>
+      </div>
+</md-list-item>

@@ -1,39 +1,29 @@
-<md-card class="task-card">  
-<!-- <section class="task-list"> -->
+<md-card class="task-card">
   <md-card-title>Task Queue</md-card-title>
-  <div class="flex-container" fxLayout="space-between center">
-    <form (submit)="onSubmit($event);">
-      <md-input-container>
+  <div class="flex-container">
+    <form (keyup.enter)="onSubmit($event);">
+      <md-input-container *ngIf="addTask === true">
       <input mdInput
             class="flex-item"
             name="title"
             [(ngModel)]="title"
-            type="text" 
+            (focusout)="addTask = false;"
+            type="text"
             placeholder="Add things to do..."/>
       </md-input-container>
-      <button md-fab class="flex-item" color="primary">
-        <md-icon>add</md-icon>
-      </button>
+      <md-divider></md-divider>
     </form>
+      <md-list *ngIf="addTask === false">
+        <md-list-item>
+          <button md-fab class="flex-item" color="primary" (click)="addTask = true; ">
+            <md-icon>add</md-icon>
+          </button>
+        </md-list-item>
+      </md-list>
   </div>
   <md-card-content>
-    <md-list>
-      <md-list-item
-        class="flex-container"
-        fxLayoutAlign="start center"
-        fxLayout="row"
-        *ngFor="let task of tasks; let i = index;">
-          <div class="flex-item" fxFlex="80">
-             <!-- <h4 [style.color] = "isCompleted ? '#673AB7' : '#7B1FA2'">{{task.title}}</h4>  fix ternary  -->
-             <h4 color="foreground">{{task.title}}</h4>
-          </div>
-          <div class="flex-item" fxFlex="20">
-            <button md-mini-fab color="accent" (click)="removeTask(task)">
-              <md-icon>delete</md-icon>
-            </button>
-          </div>
-      </md-list-item>
+    <md-list dense>
+      <app-task *ngFor="let task of tasks; let i = index;" [task]="task"></app-task>
     </md-list>
   </md-card-content>
-<!-- </section> -->
-</md-card>  
+</md-card>

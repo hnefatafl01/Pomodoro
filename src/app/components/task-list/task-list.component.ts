@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { NgForm } from '@angular/forms';
 import { TaskComponent } from '../task/task.component';
+import { Task } from './task.model';
 import {  } from '@angular/core';
 
 @Component({
@@ -10,23 +11,16 @@ import {  } from '@angular/core';
   styleUrls: ['./task-list.component.css']
 })
 
-export class TaskListComponent implements OnInit, OnChanges {
-  tasks: any;
-  isCompleted: boolean;
-  task: TaskComponent;
+export class TaskListComponent implements OnInit {
+  tasks;
+  task: Task;
   title: string;
+  isCompleted: boolean;
+  addTask = false;
 
-  constructor(private dataService: DataService) {
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    // console.log('changes', changes);
-  }
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.task = new TaskComponent();
-    this.task.id = undefined;
-    this.task.completed = false;
     this.isCompleted = false;
     this.dataService
       .getTasks()
@@ -34,33 +28,21 @@ export class TaskListComponent implements OnInit, OnChanges {
         // console.log('task list component', data)
         this.tasks = data;
     });
+  }
 
-    // this.isCompleted = this.task.completed;
-    // console.log('init', this.tasks);
+  onInput() {
+    this.addTask = true;
   }
 
   onSubmit(event) {
     event.preventDefault();
-    this.task.title = this.title;
-    console.log(this.task)
+    const newTask = new Task();
+    newTask.title = this.title;
     this.dataService
-      .createTask(this.task)
+      .createTask(newTask)
       .subscribe((response) => {
         console.log('onSubmit', response);
       });
-  }
-
-  removeTask(task) {
-    const id = task.id;
-    this.dataService
-      .deleteTask(id)
-      .subscribe((response) => {
-         console.log(response);
-      })
-    // for (let i = 0; i < this.tasks.length; i++) {
-    //   if (this.tasks[i] === task) {
-    //     this.tasks.splice(i, 1);
-    //   }
-    // }
+    this.title = '';
   }
 }

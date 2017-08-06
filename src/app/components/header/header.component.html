@@ -1,8 +1,9 @@
- <md-toolbar color="primary"> 
-     <nav>
-         <a md-button
-        *ngFor="let navLink of navLinks; let i = index;"
-        [routerLink]="navLink.link">
-        {{navLink.label}} </a>
-     </nav>
- </md-toolbar> 
+ <md-toolbar color="primary">
+    <nav>
+        <a
+          md-button
+          [routerLink]="['']">
+          Dashboard
+        </a>
+    </nav>
+ </md-toolbar>
